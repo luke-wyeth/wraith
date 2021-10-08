@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'wraith/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'wraith'
+  spec.name          = 'serato-wraith'
   spec.version       = Wraith::VERSION
   spec.authors       = ['Dave Blooman', 'Simon Thulbourn', 'Chris Ashton']
   spec.email         = ['david.blooman@gmail.com', 'simon+github@thulbourn.com', 'chrisashtonweb@gmail.com']

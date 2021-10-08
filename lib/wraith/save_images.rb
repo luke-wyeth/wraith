@@ -112,8 +112,8 @@ class Wraith::SaveImages
 
   # resize to fit entire page
   def resize_to_fit_page driver
-    width  = driver.execute_script("return Math.max(document.body.scrollWidth, document.body.offsetWidth, document.documentElement.clientWidth, document.documentElement.scrollWidth, document.documentElement.offsetWidth);")
-    height = driver.execute_script("return Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);")
+    width  = driver.execute_async_script("return Math.max(document.body.scrollWidth, document.body.offsetWidth, document.documentElement.clientWidth, document.documentElement.scrollWidth, document.documentElement.offsetWidth);")
+    height = driver.execute_async_script("return Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);")
     driver.manage.window.resize_to(width, height)
   end
 
@@ -136,8 +136,8 @@ class Wraith::SaveImages
           driver.manage.window.resize_to(width, height || 1500)
           driver.navigate.to url
           driver.manage.timeouts.implicit_wait = wraith.settle
-          driver.execute_script(File.read(global_before_capture)) if global_before_capture
-          driver.execute_script(File.read(path_before_capture)) if path_before_capture
+          driver.execute_async_script(File.read(global_before_capture)) if global_before_capture
+          driver.execute_async_script(File.read(path_before_capture)) if path_before_capture
           resize_to_fit_page(driver) unless height
           driver.save_screenshot(new_file_name)
           crop_selector(driver, selector, new_file_name) if selector && selector.length > 0
